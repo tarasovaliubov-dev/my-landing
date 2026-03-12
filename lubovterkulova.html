@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Любовь Теркулова — Там, где идея становится образом</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --paper: #F0EDE6;
+      --light: #E8E4DB;
+      --ink: #131210;
+      --mid: #7A756E;
+      --red: #C63B1E;
+      --rule: rgba(19,18,16,0.1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 48px;
+      height: 56px;
+      border-bottom: 1px solid var(--rule);
+      backdrop-filter: blur(16px);
+      background: rgba(240,237,230,0.95);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      border: none;
+      background: none;
+    }
+
+    nav { display: flex; gap: 28px; }
+
+    .nav-link {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color 0.2s;
+      padding: 0;
+    }
+    .nav-link:hover { color: var(--ink); }
+
+    @media (max-width: 768px) {
+      header { padding: 0 24px; }
+      nav { display: none; }
+    }
+
+    /* HERO */
+    #hero { padding-top: 56px; }
+
+    .hero-top {
+      background: var(--paper);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 64px 32px;
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--ink);
+      margin-bottom: 32px;
+      font-size: clamp(42px, 5vw, 70px);
+      letter-spacing: -0.025em;
+      white-space: pre-line;
+    }
+
+    .red-rule {
+      width: 40px;
+      height: 2px;
+      background: var(--red);
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--mid);
+      max-width: 400px;
+      margin-bottom: 44px;
+      line-height: 1.85;
+    }
+
+    .primary-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--paper);
+      background: var(--ink);
+      transition: background 0.2s;
+      margin-bottom: 48px;
+    }
+    .primary-btn:hover { background: var(--red); }
+
+    .hero-img {
+      width: 100%;
+      max-width: 672px;
+    }
+    .hero-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* STATS */
+    .stats {
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 16px;
+      border-right: 1px solid rgba(240,237,230,0.06);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: rgba(240,237,230,0.32);
+      margin-top: 6px;
+      text-align: center;
+    }
+
+    /* SECTION HEAD */
+    .section-head {
+      margin-bottom: 64px;
+      padding-bottom: 24px;
+    }
+    .section-head.light { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .section-head.dark { border-bottom: 1px solid rgba(19,18,16,0.1); }
+    .section-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 0.95;
+      font-size: clamp(32px, 3.8vw, 56px);
+    }
+
+    /* SERVICES */
+    #services {
+      background: var(--paper);
+      padding: 80px 56px;
+    }
+    .services-grid {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid var(--rule);
+    }
+    .service-card {
+      flex: 1;
+      padding: 48px 40px;
+      border-right: 1px solid rgba(19,18,16,0.1);
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .service-card:last-child { border-right: none; }
+    .service-card:hover { background: #E4E0D8; }
+    .service-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 24px;
+      color: rgba(198,59,30,0.15);
+    }
+    .service-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.2;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+    .service-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--mid);
+      margin-bottom: 24px;
+      line-height: 1.85;
+    }
+    .service-items {
+      border-top: 1px solid var(--rule);
+      padding-top: 16px;
+    }
+    .service-item {
+      font-size: 12px;
+      color: var(--mid);
+      font-weight: 300;
+      padding: 4px 0;
+    }
+    .service-item span { color: var(--red); margin-right: 8px; }
+
+    @media (max-width: 900px) {
+      #services { padding: 60px 24px; }
+      .services-grid { flex-direction: column; }
+      .service-card { border-right: none; border-bottom: 1px solid rgba(19,18,16,0.1); }
+      .service-card:last-child { border-bottom: none; }
+    }
+
+    /* PHOTO */
+    #photo {
+      background: var(--ink);
+      padding: 80px 56px;
+    }
+    .photo-grid {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .photo-card {
+      flex: 1;
+      padding: 48px 40px;
+      border-right: 1px solid rgba(240,237,230,0.08);
+      transition: background 0.2s;
+    }
+    .photo-card:last-child { border-right: none; }
+    .photo-card:hover { background: #1a1814; }
+    .photo-roman {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(198,59,30,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+    .photo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--paper);
+      margin-bottom: 12px;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+    .photo-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: rgba(240,237,230,0.42);
+      margin-bottom: 20px;
+      line-height: 1.85;
+    }
+    .photo-note {
+      font-size: 12px;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(198,59,30,0.7);
+    }
+
+    @media (max-width: 900px) {
+      #photo { padding: 60px 24px; }
+      .photo-grid { flex-direction: column; }
+      .photo-card { border-right: none; border-bottom: 1px solid rgba(240,237,230,0.08); }
+      .photo-card:last-child { border-bottom: none; }
+    }
+
+    /* PROJECTS */
+    #projects {
+      background: var(--light);
+      padding: 80px 56px;
+    }
+    .project-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 160px;
+      gap: 40px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--rule);
+      transition: opacity 0.2s;
+      cursor: default;
+    }
+    .project-row:hover { opacity: 0.45; }
+    .project-n { font-size: 11px; color: var(--red); padding-top: 4px; letter-spacing: 0.05em; }
+    .project-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -0.015em;
+    }
+    .project-desc { font-size: 13.5px; font-weight: 300; color: var(--mid); line-height: 1.75; }
+    .project-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-align: right; padding-top: 4px; font-weight: 300; }
+
+    @media (max-width: 900px) {
+      #projects { padding: 60px 24px; }
+      .project-row { grid-template-columns: 56px 1fr; gap: 24px; }
+      .project-tag { display: none; }
+    }
+
+    /* ABOUT */
+    #about {
+      background: var(--paper);
+      padding: 80px 56px;
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+    .about-text {
+      font-size: 14.5px;
+      font-weight: 300;
+      margin-bottom: 44px;
+      line-height: 1.95;
+      color: #45403A;
+    }
+    .about-text strong { color: var(--ink); font-weight: 500; }
+    .about-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--mid);
+      line-height: 1.6;
+      padding-left: 28px;
+      border-left: 2px solid var(--red);
+    }
+    .fact-row {
+      display: flex;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .fact-n {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--red);
+      min-width: 56px;
+      line-height: 1;
+    }
+    .fact-t { font-size: 13px; color: var(--mid); font-weight: 300; line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      #about { padding: 60px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* CONTACT */
+    #contact {
+      background: var(--ink);
+      padding: 96px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-bar-l {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--red);
+      opacity: 0.7;
+    }
+    .contact-bar-r {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--red);
+      opacity: 0.7;
+    }
+    .contact-tag {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240,237,230,0.35);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 1;
+      margin-bottom: 20px;
+      font-size: clamp(36px, 5vw, 70px);
+      letter-spacing: -0.025em;
+    }
+    .contact-desc {
+      font-size: 14px;
+      font-weight: 300;
+      max-width: 400px;
+      margin: 0 auto 48px;
+      color: rgba(240,237,230,0.4);
+      line-height: 1.85;
+    }
+    .red-rule-center { width: 40px; height: 2px; background: var(--red); margin: 0 auto 32px; }
+
+    /* FOOTER */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 56px;
+      background: #0c0b09;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-copy {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      color: rgba(240,237,230,0.2);
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-link {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: rgba(240,237,230,0.2);
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--red); }
+
+    @media (max-width: 768px) {
+      footer { padding: 20px 24px; flex-direction: column; gap: 16px; }
+      #contact { padding: 60px 24px; }
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.85s cubic-bezier(0.16,1,0.3,1), transform 0.85s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: none; }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.85s cubic-bezier(0.16,1,0.3,1) both;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <button class="logo" onclick="scrollTo('hero')">Любовь Теркулова</button>
+  <nav>
+    <button class="nav-link" onclick="scrollTo('services')">Услуги</button>
+    <button class="nav-link" onclick="scrollTo('photo')">Съёмка</button>
+    <button class="nav-link" onclick="scrollTo('projects')">Проекты</button>
+    <button class="nav-link" onclick="scrollTo('about')">Обо мне</button>
+    <button class="nav-link" onclick="scrollTo('contact')">Контакт</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-top">
+    <p class="hero-tag animate-fade-up" style="animation-delay:0.1s">Москва · события · концепции · съёмка</p>
+    <h1 class="font-serif hero-title animate-fade-up" style="animation-delay:0.25s">Там, где идея&#10;становится образом</h1>
+    <div class="red-rule animate-fade-up" style="animation-delay:0.4s"></div>
+    <p class="hero-desc animate-fade-up" style="animation-delay:0.4s">Разрабатываю концепции и снимаю так, чтобы результат работал дальше — привлекал клиентов, передавал атмосферу, оставался в памяти.</p>
+    <div class="animate-fade-up" style="animation-delay:0.55s;margin-bottom:48px">
+      <a class="primary-btn" href="https://t.me/lubovterkulova" target="_blank" rel="noopener">Написать в Telegram</a>
+    </div>
+    <div class="hero-img animate-fade-up" style="animation-delay:0.65s">
+      <img src="/images/hero-portrait.jpg" alt="Портрет Любови Теркуловой" onerror="this.style.display='none'" />
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n">72</div><div class="stat-label">реализованных проекта</div></div>
+    <div class="stat"><div class="stat-n">13M ₽</div><div class="stat-label">максимальный бюджет проекта</div></div>
+    <div class="stat"><div class="stat-n">6+</div><div class="stat-label">лет в событийной индустрии</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-head dark reveal">
+    <span class="section-tag" style="color:var(--mid)">Концептуальная работа</span>
+    <h2 class="section-title" style="color:var(--ink)">Услуги</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-n">01</div>
+      <div class="service-name">Концепция события</div>
+      <p class="service-text">Разрабатываю смысловую и визуальную логику мероприятия — от центральной идеи до атмосферы. Включает исследование, мудборды, генерацию визуалов и презентацию.</p>
+      <div class="service-items">
+        <div class="service-item"><span>—</span>Частные праздники</div>
+        <div class="service-item"><span>—</span>Корпоративные события</div>
+        <div class="service-item"><span>—</span>Камерные и городские форматы</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:90ms">
+      <div class="service-n">02</div>
+      <div class="service-name">Стратегическая сессия</div>
+      <p class="service-text">Разовая встреча для тех, кто хочет разобраться в своём проекте: найти ядро, выстроить визуальный язык, определить направление. Без шаблонов.</p>
+      <div class="service-items">
+        <div class="service-item"><span>—</span>Авторские и творческие проекты</div>
+        <div class="service-item"><span>—</span>Личный бренд</div>
+        <div class="service-item"><span>—</span>Блог и канал</div>
+      </div>
+    </div>
+    <div class="service-card reveal" style="transition-delay:180ms">
+      <div class="service-n">03</div>
+      <div class="service-name">Сопровождение проекта</div>
+      <p class="service-text">Веду проект от идеи до реализации: ставлю задачи команде, удерживаю целостность образа, слежу за тем, чтобы смысл не потерялся в деталях.</p>
+      <div class="service-items">
+        <div class="service-item"><span>—</span>Работа с командой</div>
+        <div class="service-item"><span>—</span>Контроль визуальной логики</div>
+        <div class="service-item"><span>—</span>От концепции до монтажа</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO -->
+<section id="photo">
+  <div class="section-head light reveal">
+    <span class="section-tag" style="color:rgba(240,237,230,0.45)">Фотография</span>
+    <h2 class="section-title" style="color:#F0EDE6">Съёмка под задачу</h2>
+  </div>
+  <div class="photo-grid">
+    <div class="photo-card reveal">
+      <div class="photo-roman">I</div>
+      <div class="photo-name">Портфолио для декораторов</div>
+      <p class="photo-text">Снимаю оформление на мероприятии быстро и точно — за час закрываю 2–3 локации. Понимаю материалы, свет, логику декора. С моими снимками декораторы попадали в топ-100 и привлекали новых клиентов.</p>
+      <div class="photo-note">Результат, который работает дальше</div>
+    </div>
+    <div class="photo-card reveal" style="transition-delay:90ms">
+      <div class="photo-roman">II</div>
+      <div class="photo-name">Съёмка мероприятия</div>
+      <p class="photo-text">Репортажная съёмка без постановки. Ловлю момент, эмоцию, контекст. Люди не смотрят в камеру — и именно поэтому снимки получаются живыми.</p>
+      <div class="photo-note">Живые кадры, а не постановочные</div>
+    </div>
+    <div class="photo-card reveal" style="transition-delay:180ms">
+      <div class="photo-roman">III</div>
+      <div class="photo-name">Съёмка в путешествии</div>
+      <p class="photo-text">Создаю визуальный контент в поездках — для личных проектов, каналов и брендов. Места, люди, детали — как материал, который передаёт ощущение.</p>
+      <div class="photo-note">Контент, который передаёт атмосферу</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head dark reveal">
+    <span class="section-tag" style="color:var(--mid)">Избранное</span>
+    <h2 class="section-title" style="color:var(--ink)">Проекты</h2>
+  </div>
+  <div class="project-row reveal">
+    <div class="project-n">01</div>
+    <div>
+      <div class="project-name">Работа в команде Attention</div>
+      <div class="project-desc">Как младший арт-директор разрабатывала концепции мероприятий для МТС и Яндекс.</div>
+    </div>
+    <div class="project-tag">Концепция события</div>
+  </div>
+  <div class="project-row reveal">
+    <div class="project-n">02</div>
+    <div>
+      <div class="project-name">Съёмки-события</div>
+      <div class="project-desc">Три года организовывала камерные семейные съёмки. Придумала формат, который сначала никто не понимал, — а потом он стал главным запросом декабря.</div>
+    </div>
+    <div class="project-tag">Концепция + съёмка</div>
+  </div>
+  <div class="project-row reveal">
+    <div class="project-n">03</div>
+    <div>
+      <div class="project-name">Портфолио для декораторов</div>
+      <div class="project-desc">Снимала оформление для нескольких студий. С этими фотографиями декораторы попали в рейтинг топ-100 событийных декораторов России и привлекли новых клиентов.</div>
+    </div>
+    <div class="project-tag">Съёмка декора</div>
+  </div>
+  <div class="project-row reveal">
+    <div class="project-n">04</div>
+    <div>
+      <div class="project-name">Событийный декор</div>
+      <div class="project-desc">72 проекта с бюджетами от 50 тыс. до 13 млн рублей. Работала с Flowerbazar, Shakirova Studio, Atma Design, Leru Flowers — на площадках Four Seasons, Ritz-Carlton, Барвиха, Живаго, «Орион» и др.</div>
+    </div>
+    <div class="project-tag">Декор и оформление</div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head dark reveal">
+    <span class="section-tag" style="color:var(--mid)">Обо мне</span>
+    <h2 class="section-title" style="color:var(--ink)">Любовь Теркулова</h2>
+  </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p class="about-text">За четыре года в событийном декоре реализовала <strong>72 проекта</strong> в Москве и других городах — с бюджетами от 50 тысяч до 13 миллионов рублей. Отправляла декор на Мальдивы, работала с производствами в Италии, летала на инспекцию площадок в Китай.</p>
+      <p class="about-text">Изучала дизайн в <strong>Британской высшей школе дизайна</strong>, фотографию — в <strong>Школе Родченко</strong>. Работала на международной выставке медиаискусства <strong>Intervals</strong> в Нижнем Новгороде. Преподавала в <strong>Moscow Flower School</strong>.</p>
+      <p class="about-text">Сейчас работаю на стыке концепции, арт-дирекции и фотографии — там, где важно не просто оформить, а выстроить внутреннюю логику.</p>
+      <blockquote class="about-quote">«Мне нравится состояние, когда всё — эстетика, опыт, глубина, эмпатия — наконец собирается в одном месте и обретает смысл.»</blockquote>
+    </div>
+    <div class="reveal" style="transition-delay:120ms">
+      <div class="fact-row"><div class="fact-n">72</div><div class="fact-t">реализованных события</div></div>
+      <div class="fact-row"><div class="fact-n">13M</div><div class="fact-t">максимальный бюджет проекта в рублях</div></div>
+      <div class="fact-row"><div class="fact-n">6</div><div class="fact-t">лет в индустрии событий, декора и фотографии</div></div>
+      <div class="fact-row"><div class="fact-n">↗</div><div class="fact-t">Британская высшая школа дизайна, Школа Родченко, курс Attention, курс Concept vision в школе HackArt!</div></div>
+      <div class="fact-row"><div class="fact-n">∞</div><div class="fact-t">Мальдивы, Италия, Китай — география проектов</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-bar-l"></div>
+  <div class="contact-bar-r"></div>
+  <div class="reveal">
+    <p class="contact-tag">Контакт</p>
+    <h2 class="contact-title font-serif">Есть задача —<br>давайте обсудим</h2>
+    <div class="red-rule-center"></div>
+    <p class="contact-desc">Напишите в Telegram — расскажите, что происходит. Я отвечу и мы разберёмся, чем могу помочь.</p>
+    <a class="primary-btn" href="https://t.me/lubovterkulova" target="_blank" rel="noopener">Написать @lubovterkulova ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">Любовь Теркулова © 2026</span>
+  <div class="footer-links">
+    <a class="footer-link" href="https://t.me/lubov_k_gorizontam" target="_blank" rel="noopener">Канал</a>
+    <a class="footer-link" href="https://t.me/prostor_place" target="_blank" rel="noopener">Простор</a>
+    <a class="footer-link" href="https://t.me/lubovterkulova" target="_blank" rel="noopener">Telegram</a>
+  </div>
+</footer>
+
+<script>
+  function scrollTo(id) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
