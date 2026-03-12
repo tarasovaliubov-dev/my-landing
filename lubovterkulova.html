@@ -4,11 +4,61 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Любовь Теркулова — Там, где идея становится образом</title>
+  <meta name="description" content="Любовь Теркулова — дизайнер событий и фотограф. Концепции мероприятий, арт-дирекция, съёмка. 72 реализованных проекта, 6+ лет в индустрии. Москва." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://lubovterkulova.ru/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lubovterkulova.ru/" />
+  <meta property="og:title" content="Любовь Теркулова — Там, где идея становится образом" />
+  <meta property="og:description" content="Концепции событий, арт-дирекция и фотография. 72 проекта, бюджеты до 13 млн ₽." />
+  <meta property="og:image" content="/images/hero-portrait.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Любовь Теркулова — Там, где идея становится образом" />
+  <meta name="twitter:description" content="Концепции событий, арт-дирекция и фотография. 72 проекта, бюджеты до 13 млн ₽." />
+  <meta name="twitter:image" content="/images/hero-portrait.jpg" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Любовь Теркулова",
+    "jobTitle": "Дизайнер событий и фотограф",
+    "url": "https://lubovterkulova.ru/",
+    "sameAs": ["https://t.me/lubovterkulova"],
+    "address": { "@type": "PostalAddress", "addressLocality": "Москва", "addressCountry": "RU" },
+    "description": "Разрабатываю концепции событий и снимаю так, чтобы результат работал дальше."
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* SKIP LINK */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      background: var(--ink);
+      color: var(--paper);
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      z-index: 9999;
+      transition: top 0.1s;
+    }
+    .skip-link:focus { top: 8px; }
 
     :root {
       --paper: #F0EDE6;
@@ -73,9 +123,61 @@
     }
     .nav-link:hover { color: var(--ink); }
 
+    /* FOCUS STYLES */
+    :focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    /* HAMBURGER MENU */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      background: rgba(240,237,230,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 24px 20px;
+      flex-direction: column;
+      gap: 0;
+      z-index: 199;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav .nav-link {
+      text-align: left;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 12px;
+    }
+    .mobile-nav .nav-link:last-child { border-bottom: none; }
+
     @media (max-width: 768px) {
       header { padding: 0 24px; }
       nav { display: none; }
+      .hamburger { display: flex; }
     }
 
     /* HERO */
@@ -505,23 +607,52 @@
     .animate-fade-up {
       animation: fadeUp 0.85s cubic-bezier(0.16,1,0.3,1) both;
     }
+
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+      html { scroll-behavior: auto; }
+    }
   </style>
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
 <!-- HEADER -->
-<header>
-  <button class="logo" onclick="scrollTo('hero')">Любовь Теркулова</button>
-  <nav>
-    <button class="nav-link" onclick="scrollTo('services')">Услуги</button>
-    <button class="nav-link" onclick="scrollTo('photo')">Съёмка</button>
-    <button class="nav-link" onclick="scrollTo('projects')">Проекты</button>
-    <button class="nav-link" onclick="scrollTo('about')">Обо мне</button>
-    <button class="nav-link" onclick="scrollTo('contact')">Контакт</button>
+<header role="banner">
+  <button class="logo" onclick="scrollToSection('hero')" aria-label="На главную">Любовь Теркулова</button>
+  <nav aria-label="Основная навигация">
+    <button class="nav-link" onclick="scrollToSection('services')">Услуги</button>
+    <button class="nav-link" onclick="scrollToSection('photo')">Съёмка</button>
+    <button class="nav-link" onclick="scrollToSection('projects')">Проекты</button>
+    <button class="nav-link" onclick="scrollToSection('about')">Обо мне</button>
+    <button class="nav-link" onclick="scrollToSection('contact')">Контакт</button>
   </nav>
+  <button class="hamburger" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-nav" onclick="toggleMobileNav(this)">
+    <span></span><span></span><span></span>
+  </button>
 </header>
 
+<!-- MOBILE NAV -->
+<nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация">
+  <button class="nav-link" onclick="scrollToSection('services')">Услуги</button>
+  <button class="nav-link" onclick="scrollToSection('photo')">Съёмка</button>
+  <button class="nav-link" onclick="scrollToSection('projects')">Проекты</button>
+  <button class="nav-link" onclick="scrollToSection('about')">Обо мне</button>
+  <button class="nav-link" onclick="scrollToSection('contact')">Контакт</button>
+</nav>
+
 <!-- HERO -->
+<main id="main-content">
 <section id="hero">
   <div class="hero-top">
     <p class="hero-tag animate-fade-up" style="animation-delay:0.1s">Москва · события · концепции · съёмка</p>
@@ -532,7 +663,7 @@
       <a class="primary-btn" href="https://t.me/lubovterkulova" target="_blank" rel="noopener">Написать в Telegram</a>
     </div>
     <div class="hero-img animate-fade-up" style="animation-delay:0.65s">
-      <img src="/images/hero-portrait.jpg" alt="Портрет Любови Теркуловой" onerror="this.style.display='none'" />
+      <img src="/images/hero-portrait.jpg" alt="Портрет Любови Теркуловой" loading="lazy" decoding="async" onerror="this.style.display='none'" />
     </div>
   </div>
   <div class="stats">
@@ -686,8 +817,10 @@
   </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
-<footer>
+<footer role="contentinfo">
   <span class="footer-copy">Любовь Теркулова © 2026</span>
   <div class="footer-links">
     <a class="footer-link" href="https://t.me/lubov_k_gorizontam" target="_blank" rel="noopener">Канал</a>
@@ -697,9 +830,34 @@
 </footer>
 
 <script>
-  function scrollTo(id) {
+  function scrollToSection(id) {
+    closeMobileNav();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  function toggleMobileNav(btn) {
+    const nav = document.getElementById('mobile-nav');
+    const isOpen = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen);
+    btn.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+  }
+
+  function closeMobileNav() {
+    const nav = document.getElementById('mobile-nav');
+    const btn = document.querySelector('.hamburger');
+    if (nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Открыть меню');
+    }
+  }
+
+  // Close mobile nav on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('header') && !e.target.closest('#mobile-nav')) {
+      closeMobileNav();
+    }
+  });
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
