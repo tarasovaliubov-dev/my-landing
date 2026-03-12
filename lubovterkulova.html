@@ -464,6 +464,137 @@
       .project-tag { display: none; }
     }
 
+    /* PORTFOLIO */
+    #portfolio {
+      background: var(--ink);
+      padding: 80px 56px;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      gap: 0;
+      margin-bottom: 48px;
+      border: 1px solid rgba(240,237,230,0.1);
+      width: fit-content;
+    }
+    .pf-btn {
+      background: none;
+      border: none;
+      border-right: 1px solid rgba(240,237,230,0.1);
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240,237,230,0.35);
+      padding: 10px 20px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .pf-btn:last-child { border-right: none; }
+    .pf-btn:hover { color: var(--paper); }
+    .pf-btn.active { color: var(--paper); background: rgba(240,237,230,0.06); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: #1a1814;
+    }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 2; }
+
+    .gallery-thumb {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.3s;
+      opacity: 0.85;
+    }
+    .gallery-item.wide .gallery-thumb { aspect-ratio: 8/3; }
+    .gallery-item.tall .gallery-thumb { aspect-ratio: 4/6; height: 100%; }
+
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #1a1814;
+      border: 1px solid rgba(240,237,230,0.06);
+    }
+    .gallery-item.wide .gallery-placeholder { aspect-ratio: 8/3; }
+    .gallery-item.tall .gallery-placeholder { aspect-ratio: 4/6; }
+    .gallery-placeholder-icon {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 900;
+      color: rgba(198,59,30,0.2);
+      line-height: 1;
+    }
+    .gallery-placeholder-text {
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240,237,230,0.12);
+      font-weight: 500;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(19,18,16,0.88) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 20px 22px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+    .gallery-item:hover .gallery-thumb { transform: scale(1.04); opacity: 1; }
+
+    .gallery-overlay-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--paper);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+    .gallery-overlay-tag {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      #portfolio { padding: 60px 24px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item.wide { grid-column: span 2; }
+      .gallery-item.tall { grid-row: span 1; }
+      .gallery-item.tall .gallery-thumb { aspect-ratio: 4/3; height: auto; }
+      .gallery-item.tall .gallery-placeholder { aspect-ratio: 4/3; }
+      .portfolio-filters { flex-wrap: wrap; }
+    }
+
+    @media (max-width: 600px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item.wide { grid-column: span 1; }
+      .gallery-item.wide .gallery-thumb { aspect-ratio: 4/3; }
+      .gallery-item.wide .gallery-placeholder { aspect-ratio: 4/3; }
+    }
+
     /* ABOUT */
     #about {
       background: var(--paper);
@@ -634,6 +765,7 @@
     <button class="nav-link" onclick="scrollToSection('services')">Услуги</button>
     <button class="nav-link" onclick="scrollToSection('photo')">Съёмка</button>
     <button class="nav-link" onclick="scrollToSection('projects')">Проекты</button>
+    <button class="nav-link" onclick="scrollToSection('portfolio')">Портфолио</button>
     <button class="nav-link" onclick="scrollToSection('about')">Обо мне</button>
     <button class="nav-link" onclick="scrollToSection('contact')">Контакт</button>
   </nav>
@@ -647,6 +779,7 @@
   <button class="nav-link" onclick="scrollToSection('services')">Услуги</button>
   <button class="nav-link" onclick="scrollToSection('photo')">Съёмка</button>
   <button class="nav-link" onclick="scrollToSection('projects')">Проекты</button>
+  <button class="nav-link" onclick="scrollToSection('portfolio')">Портфолио</button>
   <button class="nav-link" onclick="scrollToSection('about')">Обо мне</button>
   <button class="nav-link" onclick="scrollToSection('contact')">Контакт</button>
 </nav>
@@ -781,6 +914,134 @@
   </div>
 </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-head light reveal">
+    <span class="section-tag" style="color:rgba(240,237,230,0.45)">Избранные работы</span>
+    <h2 class="section-title" style="color:#F0EDE6">Портфолио</h2>
+  </div>
+
+  <div class="portfolio-filters reveal">
+    <button class="pf-btn active" data-filter="all" onclick="filterGallery(this,'all')">Все</button>
+    <button class="pf-btn" data-filter="event" onclick="filterGallery(this,'event')">События</button>
+    <button class="pf-btn" data-filter="photo" onclick="filterGallery(this,'photo')">Съёмка</button>
+    <button class="pf-btn" data-filter="decor" onclick="filterGallery(this,'decor')">Декор</button>
+  </div>
+
+  <div class="gallery-grid" id="gallery">
+
+    <!-- Замените src на реальные фото. data-cat — категория для фильтрации -->
+    <div class="gallery-item wide reveal" data-cat="event">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">01</div>
+        <div class="gallery-placeholder-text">Фото · 1440 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/event-01.jpg" alt="Корпоративное мероприятие МТС" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Корпоративное мероприятие МТС</div>
+        <div class="gallery-overlay-tag">Событие</div>
+      </div>
+    </div>
+
+    <div class="gallery-item tall reveal" data-cat="decor" style="transition-delay:60ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">02</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 960</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/decor-01.jpg" alt="Флористический декор" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Флористический декор</div>
+        <div class="gallery-overlay-tag">Декор</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="photo" style="transition-delay:120ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">03</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/photo-01.jpg" alt="Портфолио декоратора" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Портфолио декоратора</div>
+        <div class="gallery-overlay-tag">Съёмка</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="event" style="transition-delay:60ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">04</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/event-02.jpg" alt="Камерная семейная съёмка" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Камерная семейная съёмка</div>
+        <div class="gallery-overlay-tag">Событие · Съёмка</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="decor" style="transition-delay:120ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">05</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/decor-02.jpg" alt="Оформление Four Seasons" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Оформление Four Seasons</div>
+        <div class="gallery-overlay-tag">Декор</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="photo" style="transition-delay:180ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">06</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/photo-02.jpg" alt="Репортаж с мероприятия" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Репортаж с мероприятия</div>
+        <div class="gallery-overlay-tag">Съёмка</div>
+      </div>
+    </div>
+
+    <div class="gallery-item wide reveal" data-cat="decor" style="transition-delay:60ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">07</div>
+        <div class="gallery-placeholder-text">Фото · 1440 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/decor-03.jpg" alt="Мальдивы — выездное оформление" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Мальдивы — выездное оформление</div>
+        <div class="gallery-overlay-tag">Декор</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="photo" style="transition-delay:120ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">08</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/photo-03.jpg" alt="Съёмка в путешествии" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Съёмка в путешествии</div>
+        <div class="gallery-overlay-tag">Съёмка</div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal" data-cat="event" style="transition-delay:180ms">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">09</div>
+        <div class="gallery-placeholder-text">Фото · 720 × 540</div>
+      </div>
+      <!-- <img class="gallery-thumb" src="/images/portfolio/event-03.jpg" alt="Яндекс — концепция события" loading="lazy" decoding="async" /> -->
+      <div class="gallery-overlay">
+        <div class="gallery-overlay-title">Яндекс — концепция события</div>
+        <div class="gallery-overlay-tag">Событие</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-head dark reveal">
@@ -858,6 +1119,16 @@
       closeMobileNav();
     }
   });
+
+  // Gallery filter
+  function filterGallery(btn, cat) {
+    document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      const match = cat === 'all' || item.dataset.cat === cat;
+      item.style.display = match ? '' : 'none';
+    });
+  }
 
   // Reveal on scroll
   const reveals = document.querySelectorAll('.reveal');
